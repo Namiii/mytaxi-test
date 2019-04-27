@@ -9,6 +9,7 @@ import dagger.android.HasActivityInjector
 import dagger.android.support.HasSupportFragmentInjector
 import gyg.demo.mytaxitest.di.AppModule
 import gyg.demo.mytaxitest.di.DaggerAppComponent
+import gyg.demo.mytaxitest.di.RestModule
 import javax.inject.Inject
 
 class App : Application(),
@@ -26,6 +27,7 @@ class App : Application(),
 
         DaggerAppComponent.builder()
             .appModule(AppModule(this))
+            .restModule(RestModule())
             .build()
             .inject(this)
     }
