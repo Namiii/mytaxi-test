@@ -26,10 +26,12 @@ buildscript {
     ext.androidx_support_annotations_version = '1.0.1'
     ext.androidx_constraint_layout_version = '1.0.0'
     ext.androidx_version = '1.0.2'
+    ext.parceler_version = '1.1.12'
+
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.0'

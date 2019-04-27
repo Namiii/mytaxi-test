@@ -1,4 +1,13 @@
 package gyg.demo.mytaxitest.data.model
 
-class TaxiList {
-}
+import com.google.gson.annotations.SerializedName
+import org.parceler.Parcel
+
+@Parcel
+data class TaxiList(
+    @SerializedName("poiList")
+    val list: List<Vehicle>
+)
+
+fun TaxiList.hasData(): Boolean =
+    !list.isNullOrEmpty()
