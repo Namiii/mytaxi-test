@@ -1,4 +1,4 @@
-package gyg.demo.mytaxitest
+package gyg.demo.mytaxitest.core
 
 import android.app.Activity
 import android.app.Application

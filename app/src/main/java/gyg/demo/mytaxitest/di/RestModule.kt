@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import gyg.demo.mytaxitest.BuildConfig
 import gyg.demo.mytaxitest.IdlingResources
+import gyg.demo.mytaxitest.data.TaxiListService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -52,6 +53,10 @@ class RestModule {
             .addCallAdapterFactory(rxAdapter)
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideTaxiListService(retrofit: Retrofit): TaxiListService = retrofit.create(TaxiListService::class.java)
 
     companion object {
         const val BASE_URL = "https://fake-poi-api.mytaxi.com/"

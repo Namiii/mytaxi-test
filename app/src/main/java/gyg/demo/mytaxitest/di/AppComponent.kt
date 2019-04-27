@@ -1,7 +1,7 @@
 package gyg.demo.mytaxitest.di
 
 import dagger.Component
-import gyg.demo.mytaxitest.App
+import gyg.demo.mytaxitest.core.App
 import javax.inject.Singleton
 
 @Singleton
