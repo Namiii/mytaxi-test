@@ -1,7 +1,8 @@
-package gyg.demo.mytaxitest
+package gyg.demo.mytaxitest.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import gyg.demo.mytaxitest.R
 
 class MainActivity : AppCompatActivity() {
 
