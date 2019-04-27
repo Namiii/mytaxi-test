@@ -1,9 +1,10 @@
 package gyg.demo.mytaxitest.data.model
 
-import org.parceler.Parcel
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-@Parcel
-sealed class TaxiType {
-    object poolingTaxi : TaxiType()
-    object normalTaxi : TaxiType()
+@Parcelize
+enum class TaxiType : Parcelable {
+    POOLING,
+    NORMAL
 }
