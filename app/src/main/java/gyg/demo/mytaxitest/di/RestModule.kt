@@ -1,11 +1,14 @@
 package gyg.demo.mytaxitest.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import gyg.demo.mytaxitest.BuildConfig
 import gyg.demo.mytaxitest.IdlingResources
 import gyg.demo.mytaxitest.data.TaxiListService
+import gyg.demo.mytaxitest.data.model.TaxiType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,7 +31,15 @@ class RestModule {
 
     @Singleton
     @Provides
-    fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
+    fun provideGson(): Gson {
+        val builder = GsonBuilder()
+        builder.registerTypeAdapter(TaxiType::class.java, CustomSerializerDeserializer())
+        return builder.create()
+    }
+
+    @Singleton
+    @Provides
+    fun provideGsonConverterFactory(gson: Gson): GsonConverterFactory = GsonConverterFactory.create(gson)
 
     @Singleton
     @Provides

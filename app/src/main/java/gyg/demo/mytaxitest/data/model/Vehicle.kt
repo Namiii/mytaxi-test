@@ -1,10 +1,7 @@
 package gyg.demo.mytaxitest.data.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class Vehicle(
     @SerializedName("id")
     val id: Int,
@@ -14,4 +11,11 @@ data class Vehicle(
     val type: TaxiType,
     @SerializedName("heading")
     val headingAngle: Float
-) : Parcelable
+) {
+    override fun toString(): String {
+        return "id = $id," +
+                " coordinate = Coordinate(lat = ${coordinate.lat}, long = ${coordinate.long})," +
+                " type = ${type.javaClass.simpleName}," +
+                " headingAngle = $headingAngle"
+    }
+}
