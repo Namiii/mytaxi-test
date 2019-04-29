@@ -5,7 +5,7 @@ import gyg.demo.mytaxitest.core.App
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, RestModule::class, ActivityBuilder::class])
+@Component(modules = [AppModule::class, RestModule::class, ActivityBuilder::class, ViewModelModule::class])
 interface AppComponent {
 
     @Component.Builder
