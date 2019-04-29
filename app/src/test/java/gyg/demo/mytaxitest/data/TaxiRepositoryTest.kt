@@ -7,7 +7,7 @@ import gyg.demo.mytaxitest.data.model.Place
 import gyg.demo.mytaxitest.data.model.TaxiList
 import gyg.demo.mytaxitest.data.model.TaxiType
 import gyg.demo.mytaxitest.di.CustomSerializerDeserializer
-import gyg.demo.mytaxitest.ui.list.Hamburg
+import gyg.demo.mytaxitest.taxiList.data.Hamburg
 import io.reactivex.observers.TestObserver
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse

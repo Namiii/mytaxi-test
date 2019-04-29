@@ -1,4 +1,4 @@
-package gyg.demo.mytaxitest.ui.list
+package gyg.demo.mytaxitest.taxiList.data
 
 import gyg.demo.mytaxitest.data.model.Place
 import gyg.demo.mytaxitest.data.model.Coordinate

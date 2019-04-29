@@ -1,4 +1,4 @@
-package gyg.demo.mytaxitest.ui.taxiList
+package gyg.demo.mytaxitest.taxiList
 
 import gyg.demo.mytaxitest.core.BaseViewModel
 

@@ -2,7 +2,7 @@ package gyg.demo.mytaxitest.data
 
 import gyg.demo.mytaxitest.data.model.Place
 import gyg.demo.mytaxitest.data.model.TaxiList
-import gyg.demo.mytaxitest.ui.list.Hamburg
+import gyg.demo.mytaxitest.taxiList.data.Hamburg
 import io.reactivex.Observable
 import javax.inject.Inject
 

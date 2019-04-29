@@ -2,8 +2,8 @@ package gyg.demo.mytaxitest.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import gyg.demo.mytaxitest.ui.MainActivity
-import gyg.demo.mytaxitest.ui.list.ListFragment
+import gyg.demo.mytaxitest.core.MainActivity
+import gyg.demo.mytaxitest.taxiList.TaxiListFragment
 
 @Module
 abstract class ActivityBuilder {
@@ -11,5 +11,5 @@ abstract class ActivityBuilder {
     abstract fun contributeMainActivity(): MainActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeListFragment(): ListFragment
+    abstract fun contributeListFragment(): TaxiListFragment
 }
