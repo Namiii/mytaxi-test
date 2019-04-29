@@ -6,7 +6,7 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface TaxiListService {
+interface TaxiService {
     @Keep
     @GET(".")
     fun getTaxis(

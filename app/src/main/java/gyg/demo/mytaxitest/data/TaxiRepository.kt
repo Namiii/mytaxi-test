@@ -2,16 +2,15 @@ package gyg.demo.mytaxitest.data
 
 import gyg.demo.mytaxitest.data.model.Place
 import gyg.demo.mytaxitest.data.model.TaxiList
-import gyg.demo.mytaxitest.data.model.Vehicle
 import gyg.demo.mytaxitest.ui.list.Hamburg
 import io.reactivex.Observable
 import javax.inject.Inject
 
 class TaxiRepository @Inject constructor(
-    private val taxiListService: TaxiListService
+    private val taxiListService: TaxiService
 ) {
 
-    private var taxiListCache = ArrayList<Vehicle>()
+    private var taxiListCache = TaxiList(ArrayList())
 
     fun getTaxis(place: Place): Observable<TaxiList> {
         place.apply {
@@ -22,19 +21,18 @@ class TaxiRepository @Inject constructor(
                 bound2.long
             )
                 .doOnNext {
-                    reloadCache(it.list)
+                    reloadCache(it)
                 }
         }
     }
 
     fun getInitTaxis(): Observable<TaxiList> = getTaxis(Hamburg())
 
-    fun hasCachedTaxiList() = taxiListCache.size > 0
+    fun hasCachedTaxiList() = taxiListCache.list.isNotEmpty()
 
     fun getCachedTaxiList() = taxiListCache
 
-    private fun reloadCache(list: List<Vehicle>) {
-        taxiListCache.clear()
-        taxiListCache.addAll(list)
+    private fun reloadCache(taxiList: TaxiList) {
+        taxiListCache = taxiList
     }
 }
