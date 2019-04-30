@@ -8,6 +8,7 @@ import gyg.demo.mytaxitest.data.model.TaxiList
 import gyg.demo.mytaxitest.data.model.TaxiType
 import gyg.demo.mytaxitest.di.CustomSerializerDeserializer
 import gyg.demo.mytaxitest.taxiList.data.Hamburg
+import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
@@ -173,5 +174,9 @@ class TaxiRepositoryTest {
 
     private fun String.getTestResource(): String? {
         return this.javaClass::class.java.getResource(this)?.readText()
+    }
+
+    private fun TaxiRepository.getInitTaxis(): Observable<TaxiList> {
+        return this.getTaxis(Hamburg())
     }
 }
