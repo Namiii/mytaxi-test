@@ -5,7 +5,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-allopen'
 
 allOpen {
-//    annotation 'gyg.demo.review.OpenClass'
+    annotation 'gyg.demo.mytaxitest.OpenClass'
 }
 
 android {
@@ -94,6 +94,8 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$mockito_version"
     testImplementation "androidx.annotation:annotation:$androidx_support_annotations_version"
     implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    testImplementation "com.nhaarman:mockito-kotlin:$mockito_kotlin_version"
+
 
     // Instrumented test
     androidTestImplementation "org.mockito:mockito-android:$mockito_version"
