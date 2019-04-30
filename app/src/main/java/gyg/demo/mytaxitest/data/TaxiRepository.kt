@@ -1,11 +1,14 @@
 package gyg.demo.mytaxitest.data
 
+import gyg.demo.mytaxitest.OpenClassOnDebug
 import gyg.demo.mytaxitest.data.model.Place
 import gyg.demo.mytaxitest.data.model.TaxiList
-import gyg.demo.mytaxitest.taxiList.data.Hamburg
 import io.reactivex.Observable
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
+@OpenClassOnDebug
 class TaxiRepository @Inject constructor(
     private val taxiListService: TaxiService
 ) {
@@ -25,8 +28,6 @@ class TaxiRepository @Inject constructor(
                 }
         }
     }
-
-    fun getInitTaxis(): Observable<TaxiList> = getTaxis(Hamburg())
 
     fun hasCachedTaxiList() = taxiListCache.list.isNotEmpty()
 
