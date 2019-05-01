@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <import type="gyg.demo.mytaxitest.data.model.Vehicle"/>
+
+        <variable name="taxi" type="Vehicle"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <ImageView
+                android:id="@+id/taxi_list_item_icon"
+                android:layout_width="@dimen/taxi_item_icon_size"
+                android:layout_height="@dimen/taxi_item_icon_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="@dimen/normal_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:src="@tools:sample/avatars"
+                setTaxiIcon="@{taxi}"
+                tools:ignore="ContentDescription"/>
+
+        <TextView
+                android:id="@+id/taxi_list_item_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text_color"
+                android:textSize="@dimen/taxi_item_id_text_size"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="@dimen/normal_margin"
+                android:text="@{taxi.id}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/taxi_list_item_icon"
+                tools:text="12314"/>
+
+        <TextView
+                android:id="@+id/taxi_list_item_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/secondary_text_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="@dimen/taxi_item_type_text_size"
+                android:layout_margin="@dimen/normal_margin"
+                setTaxiType="@{taxi}"
+                tools:text="Normal"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="primary_text_color">#FF000000</color>
+    <color name="secondary_text_color">#FF666666</color>
+
+    <color name="normal_taxi_icon_color">#FFF176</color>
+    <color name="pooling_taxi_icon_color">#F4511E</color>
 </resources>
