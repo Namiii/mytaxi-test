@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+                name="hasData"
+                type="boolean"/>
+
+    </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/taxi_list_recycler_view"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/taxi_list_swipe_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="@layout/taxi_list_item_layout"/>
+                android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    goneIf="@{ !hasData }"
+                    android:id="@+id/taxi_list_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/taxi_list_item_layout"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <TextView
+                goneIf="@{ hasData }"
+                style="@style/TextView.Large"
+                android:textColor="@color/secondary_text_color"
+                android:id="@+id/error_text_view"
+                android:padding="@dimen/normal_margin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/list_error_message"
+                tools:visibility="gone"
+                android:gravity="center"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

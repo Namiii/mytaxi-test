@@ -63,14 +63,28 @@ class TaxiListFragment : BaseFragment() {
             vm.data.observe(this, Observer {
                 when (it) {
                     is ResultWrapper.Success -> {
+                        binding.taxiListSwipeLayout.isRefreshing = false
                         adapter.updateItems(it.value.list)
+                        binding.hasData = true
+
                     }
                     is ResultWrapper.Failure -> {
+                        binding.taxiListSwipeLayout.isRefreshing = false
+                        binding.hasData = false
                     }
                 }
             })
-            vm.getInitTaxis()
+            getData()
         }
 
+        binding.taxiListSwipeLayout.setOnRefreshListener {
+            getData()
+        }
+    }
+
+    private fun getData() {
+        viewModel?.getInitTaxis()
+        binding.taxiListSwipeLayout.isRefreshing = true
+        binding.hasData = true
     }
 }

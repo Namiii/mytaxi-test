@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextView"/>
+
+    <style name="TextView.Large">
+        <item name="android:textSize">@dimen/error_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
 </resources>

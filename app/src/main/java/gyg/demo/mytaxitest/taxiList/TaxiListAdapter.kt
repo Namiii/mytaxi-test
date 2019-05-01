@@ -15,11 +15,8 @@ class TaxiListAdapter(
     private var items = listOf<Vehicle>()
 
     fun updateItems(items: List<Vehicle>) {
-        this.items += items
-        notifyItemRangeChanged(
-            this.items.size.minus(items.size),
-            this.items.size
-        )
+        this.items = items
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
