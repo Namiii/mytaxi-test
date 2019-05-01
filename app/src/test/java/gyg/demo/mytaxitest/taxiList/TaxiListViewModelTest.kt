@@ -7,7 +7,6 @@ import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.data.TaxiRepository
 import gyg.demo.mytaxitest.data.model.*
 import gyg.demo.mytaxitest.providers.ImmediateScheduleProviders
-import gyg.demo.mytaxitest.taxiList.data.Hamburg
 import io.reactivex.Observable
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -25,8 +24,6 @@ class TaxiListViewModelTest {
     private val repository = mock(TaxiRepository::class.java)
 
     private lateinit var viewModel: TaxiListViewModel
-
-    private val hamburg = Hamburg()
 
     private val taxiList = TaxiList(
         (1..30).map {

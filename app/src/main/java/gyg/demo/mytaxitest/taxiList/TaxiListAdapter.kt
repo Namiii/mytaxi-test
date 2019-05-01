@@ -46,6 +46,6 @@ class TaxiListAdapter(
     }
 }
 
-interface OnItemClickListener<Review> {
-    fun onClick(item: Review)
+interface OnItemClickListener<Vehicle> {
+    fun onClick(item: Vehicle)
 }
