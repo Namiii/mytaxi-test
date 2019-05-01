@@ -7,6 +7,8 @@
     <color name="primary_text_color">#FF000000</color>
     <color name="secondary_text_color">#FF666666</color>
 
-    <color name="normal_taxi_icon_color">#FFF176</color>
-    <color name="pooling_taxi_icon_color">#F4511E</color>
+    <color name="normal_taxi_icon_color">#D3B806</color>
+    <color name="pooling_taxi_icon_color">#E73C07</color>
+
+    <color name="divider_color">#FFEDEFF2</color>
 </resources>

@@ -1,17 +1,32 @@
 package gyg.demo.mytaxitest.taxiList
 
 import android.os.Bundle
-import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.core.BaseFragment
+import gyg.demo.mytaxitest.core.MarginItemDecoration
 import gyg.demo.mytaxitest.data.ResultWrapper
+import gyg.demo.mytaxitest.data.model.Vehicle
+import gyg.demo.mytaxitest.databinding.TaxiListFragmentBinding
 
 class TaxiListFragment : BaseFragment() {
 
+    private lateinit var binding: TaxiListFragmentBinding
+
     var viewModel: TaxiListViewModel? = null
 
-    var a = false
+    private val adapter = TaxiListAdapter(object : OnItemClickListener<Vehicle> {
+        override fun onClick(item: Vehicle) {
+        }
+    })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,22 +36,40 @@ class TaxiListFragment : BaseFragment() {
         }
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.taxi_list_fragment, container, false)
+        return binding.root
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel?.let { vm ->
-            vm.getInitTaxis()
-            vm.data.observe(this, Observer {
-                a = when (it) {
-                    is ResultWrapper.Success -> {
-                        true
+        (activity as AppCompatActivity).supportActionBar?.let {
+            it.title = getString(R.string.list_title)
+            it.setDisplayHomeAsUpEnabled(false)
+        }
+        setHasOptionsMenu(false)
 
+        binding.taxiListRecyclerView.adapter = adapter
+        binding.taxiListRecyclerView.layoutManager =
+            LinearLayoutManager(
+                context,
+                RecyclerView.VERTICAL,
+                false
+            )
+        binding.taxiListRecyclerView.addItemDecoration(MarginItemDecoration(context!!))
+
+        viewModel?.let { vm ->
+            vm.data.observe(this, Observer {
+                when (it) {
+                    is ResultWrapper.Success -> {
+                        adapter.updateItems(it.value.list)
                     }
                     is ResultWrapper.Failure -> {
-                        false
                     }
                 }
             })
+            vm.getInitTaxis()
         }
 
     }

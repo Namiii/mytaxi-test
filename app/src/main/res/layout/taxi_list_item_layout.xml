@@ -4,14 +4,21 @@
     <data>
 
         <import type="gyg.demo.mytaxitest.data.model.Vehicle"/>
+        <import type="gyg.demo.mytaxitest.taxiList.OnItemClickListener"/>
 
         <variable name="taxi" type="Vehicle"/>
 
+
+        <variable
+                name="clickListener"
+                type="OnItemClickListener&lt;Vehicle&gt;"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:onClick="@{() -> clickListener.onClick(taxi)}">
 
 
         <ImageView
@@ -34,7 +41,7 @@
                 android:textSize="@dimen/taxi_item_id_text_size"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_margin="@dimen/normal_margin"
-                android:text="@{taxi.id}"
+                android:text="@{String.valueOf(taxi.id)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/taxi_list_item_icon"
                 tools:text="12314"/>
