@@ -3,6 +3,7 @@ package gyg.demo.mytaxitest.data
 import gyg.demo.mytaxitest.OpenClassOnDebug
 import gyg.demo.mytaxitest.data.model.Place
 import gyg.demo.mytaxitest.data.model.TaxiList
+import gyg.demo.mytaxitest.data.model.Vehicle
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -32,6 +33,14 @@ class TaxiRepository @Inject constructor(
     fun hasCachedTaxiList() = taxiListCache.list.isNotEmpty()
 
     fun getCachedTaxiList() = taxiListCache
+
+    fun getSelectedTaxiFromCache(taxiId: Int): Vehicle? {
+        if (!hasCachedTaxiList()) return null
+
+        return taxiListCache.list.find {
+            it.id == taxiId
+        }
+    }
 
     private fun reloadCache(taxiList: TaxiList) {
         taxiListCache = taxiList
