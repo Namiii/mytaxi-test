@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TestSingleFragmentActivity"/>
+        <activity android:name=".core.BaseActivity"/>
     </application>
 
 </manifest>
