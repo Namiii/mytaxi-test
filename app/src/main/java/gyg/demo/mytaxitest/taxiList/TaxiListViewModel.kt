@@ -42,10 +42,10 @@ class TaxiListViewModel @Inject constructor(
     }
 
     fun getTaxisAtPlace(
-        bound1Lat: Float,
-        bound1Lon: Float,
-        bound2Lat: Float,
-        bound2Lon: Float
+        bound1Lat: Double,
+        bound1Lon: Double,
+        bound2Lat: Double,
+        bound2Lon: Double
     ) {
         Observable.just(
             Place(

@@ -10,9 +10,9 @@ interface TaxiService {
     @Keep
     @GET(".")
     fun getTaxis(
-        @Query("p1Lat") bound1Lat: Float,
-        @Query("p1Lon") bound1Lon: Float,
-        @Query("p2Lat") bound2Lat: Float,
-        @Query("p2Lon") bound2Lon: Float
+        @Query("p1Lat") bound1Lat: Double,
+        @Query("p1Lon") bound1Lon: Double,
+        @Query("p2Lat") bound2Lat: Double,
+        @Query("p2Lon") bound2Lon: Double
     ): Observable<TaxiList>
 }

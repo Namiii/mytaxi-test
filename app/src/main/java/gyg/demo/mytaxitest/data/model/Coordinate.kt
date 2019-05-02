@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Coordinate(
     @SerializedName("latitude")
-    val lat: Float,
+    val lat: Double,
     @SerializedName("longitude")
-    val long: Float
+    val long: Double
 )
 
 fun Coordinate.toLatLng(): LatLng {
-    return LatLng(lat.toDouble(),long.toDouble())
+    return LatLng(lat,long)
 }
