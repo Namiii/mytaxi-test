@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.core.BaseFragment
-import gyg.demo.mytaxitest.core.MarginItemDecoration
 import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.data.model.Vehicle
 import gyg.demo.mytaxitest.databinding.TaxiListFragmentBinding

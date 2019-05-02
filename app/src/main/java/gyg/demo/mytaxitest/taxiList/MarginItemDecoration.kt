@@ -1,4 +1,4 @@
-package gyg.demo.mytaxitest.core
+package gyg.demo.mytaxitest.taxiList
 
 import android.content.Context
 import android.graphics.Canvas

@@ -6,4 +6,6 @@
     <string name="pooling_taxi_type">Pooling</string>
 
     <string name="list_error_message">Something went wrong, you can try and refresh by pulling down</string>
+    <string name="title_activity_taxi_map">Map</string>
+    <string name="menu_option_map">Map</string>
 </resources>
