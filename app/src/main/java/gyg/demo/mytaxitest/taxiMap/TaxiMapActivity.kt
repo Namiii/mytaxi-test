@@ -3,6 +3,7 @@ package gyg.demo.mytaxitest.taxiMap
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -12,6 +13,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.core.BaseActivity
+import gyg.demo.mytaxitest.data.ResultWrapper
+import gyg.demo.mytaxitest.taxiList.data.Hamburg
 import javax.inject.Inject
 
 class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
@@ -35,6 +38,17 @@ class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        viewModel?.let { vm ->
+            vm.listData.observe(this, Observer {
+                when (it) {
+
+                    is ResultWrapper.Success -> mapManager.loadTaxis(it.value.list)
+                    is ResultWrapper.Failure -> {
+                    }
+                }
+            })
+        }
+
     }
 
     /**
@@ -49,9 +63,9 @@ class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12f))
+        val hamburg = mapManager.getPlaceCenter(Hamburg())
+        mMap.addMarker(MarkerOptions().position(hamburg).title("Marker in Hamburg"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hamburg, 12f))
 
         mapManager.init(mMap)
         val bounds = mapManager.getMapBounds()
