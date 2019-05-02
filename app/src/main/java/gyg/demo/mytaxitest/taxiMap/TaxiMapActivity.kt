@@ -3,7 +3,7 @@ package gyg.demo.mytaxitest.taxiMap
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -11,18 +11,30 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import gyg.demo.mytaxitest.R
+import gyg.demo.mytaxitest.core.BaseActivity
+import javax.inject.Inject
 
-class TaxiMapActivity : AppCompatActivity(), OnMapReadyCallback {
+class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
+
+    var viewModel: TaxiMapViewModel? = null
 
     private lateinit var mMap: GoogleMap
+
+    @Inject
+    lateinit var mapManager: MapManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_taxi_map)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+        if (viewModel == null) {
+            viewModel = ViewModelProviders.of(this, viewModelFactory).get(TaxiMapViewModel::class.java)
+        }
+
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
     }
 
     /**
@@ -37,10 +49,19 @@ class TaxiMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12f))
+
+        mapManager.init(mMap)
+        val bounds = mapManager.getMapBounds()
+        viewModel?.getTaxisAtBounds(
+            bounds.northeast.latitude,
+            bounds.northeast.longitude,
+            bounds.southwest.latitude,
+            bounds.southwest.longitude
+        )
+
     }
 }
 

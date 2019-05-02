@@ -37,14 +37,14 @@ class MapManager {
         )
     }
 
+    fun getMapBounds(): LatLngBounds {
+        return map.projection.visibleRegion.latLngBounds
+    }
+
     private fun createTaxiMarker(vehicle: Vehicle): MarkerOptions {
         return MarkerOptions()
             .position(vehicle.coordinate.toLatLng())
             .rotation(vehicle.headingAngle)
-    }
-
-    private fun getMapBounds(): LatLngBounds {
-        return map.projection.visibleRegion.latLngBounds
     }
 
     companion object {
