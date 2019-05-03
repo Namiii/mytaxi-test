@@ -17,12 +17,17 @@ class MapManager @Inject constructor() {
     private lateinit var map: GoogleMap
 
     //Init has to be called before interacting with the class
-    fun init(map: GoogleMap) {
+    fun init(map: GoogleMap, defaultPlace: Place) {
         this.map = map
-        map.moveCamera(CameraUpdateFactory.zoomTo(DEFAULT_ZOOM_LEVEL))
+        map.clear()
+
+        val placeCenter = getPlaceCenter(defaultPlace)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(placeCenter, DEFAULT_ZOOM_LEVEL))
     }
 
     fun loadTaxis(list: List<Vehicle>) {
+        map.clear()
+
         for (taxi in list) {
             val marker = createTaxiMarker(taxi)
             map.addMarker(marker)
@@ -44,7 +49,7 @@ class MapManager @Inject constructor() {
         return map.projection.visibleRegion.latLngBounds
     }
 
-    fun getPlaceCenter(place: Place): LatLng {
+    private fun getPlaceCenter(place: Place): LatLng {
         LatLngBounds.Builder().apply {
             include(place.bound1.toLatLng())
             include(place.bound2.toLatLng())
