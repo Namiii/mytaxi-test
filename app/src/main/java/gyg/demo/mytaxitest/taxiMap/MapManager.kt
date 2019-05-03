@@ -2,16 +2,17 @@ package gyg.demo.mytaxitest.taxiMap
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
+import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.data.model.Place
+import gyg.demo.mytaxitest.data.model.TaxiType
 import gyg.demo.mytaxitest.data.model.Vehicle
 import gyg.demo.mytaxitest.data.model.toLatLng
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MapManager {
+class MapManager @Inject constructor() {
 
     private lateinit var map: GoogleMap
 
@@ -54,7 +55,18 @@ class MapManager {
     private fun createTaxiMarker(vehicle: Vehicle): MarkerOptions {
         return MarkerOptions()
             .position(vehicle.coordinate.toLatLng())
+            .icon(createTaxiMarkerIcon(vehicle.type))
             .rotation(vehicle.headingAngle)
+    }
+
+    private fun createTaxiMarkerIcon(taxiType: TaxiType): BitmapDescriptor {
+        return BitmapDescriptorFactory.fromResource(
+            when (taxiType) {
+                TaxiType.NormalTaxi -> R.drawable.ic_vehicle_normal
+                TaxiType.PoolingTaxi -> R.drawable.ic_vehicle_pooling
+            }
+        )
+
     }
 
     companion object {
