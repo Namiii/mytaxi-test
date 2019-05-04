@@ -6,6 +6,3 @@ data class TaxiList(
     @SerializedName("poiList")
     val list: List<Taxi>
 )
-
-fun TaxiList.hasData(): Boolean =
-    !list.isNullOrEmpty()
