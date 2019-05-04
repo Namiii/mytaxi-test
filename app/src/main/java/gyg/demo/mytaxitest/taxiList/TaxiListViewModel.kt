@@ -13,6 +13,7 @@ import gyg.demo.mytaxitest.data.model.hasData
 import gyg.demo.mytaxitest.providers.BaseScheduleProvider
 import gyg.demo.mytaxitest.taxiList.data.Hamburg
 import io.reactivex.Observable
+import org.jetbrains.annotations.TestOnly
 import javax.inject.Inject
 
 class TaxiListViewModel @Inject constructor(
@@ -41,6 +42,7 @@ class TaxiListViewModel @Inject constructor(
             .addTo(disposable)
     }
 
+    @TestOnly
     fun getTaxisAtPlace(
         bound1Lat: Double,
         bound1Lon: Double,

@@ -34,8 +34,8 @@ class TaxiRepositoryTest {
 
     private val defaultPlace =
         Place(
-            Coordinate(0f, 0f),
-            Coordinate(0f, 0f)
+            Coordinate(0.0, 0.0),
+            Coordinate(0.0, 0.0)
         )
 
     @Before

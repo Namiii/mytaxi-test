@@ -43,8 +43,8 @@ class TaxiListFragmentTest {
             Vehicle(
                 it,
                 Coordinate(
-                    53.407547f,
-                    9.8783910f
+                    53.407547,
+                    9.8783910
                 ),
                 TaxiType.NormalTaxi,
                 310.30877f
