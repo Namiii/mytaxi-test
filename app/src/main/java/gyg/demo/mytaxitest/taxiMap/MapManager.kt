@@ -34,7 +34,7 @@ class MapManager @Inject constructor() {
         }
     }
 
-    fun zoomInOnTaxi(taxi: Vehicle) {
+    fun loadTaxi(taxi: Vehicle) {
         val marker = createTaxiMarker(taxi)
         map.addMarker(marker)
         map.moveCamera(
@@ -71,11 +71,10 @@ class MapManager @Inject constructor() {
                 TaxiType.PoolingTaxi -> R.drawable.ic_vehicle_pooling
             }
         )
-
     }
 
     companion object {
         private const val DEFAULT_ZOOM_LEVEL = 12f
-        private const val SELECTED_ZOOM_LEVEL = 18f
+        private const val SELECTED_ZOOM_LEVEL = 16f
     }
 }

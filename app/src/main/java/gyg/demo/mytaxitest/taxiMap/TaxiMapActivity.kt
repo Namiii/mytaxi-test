@@ -16,12 +16,15 @@ import gyg.demo.mytaxitest.core.makeLongToast
 import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.databinding.ActivityTaxiMapBinding
 import gyg.demo.mytaxitest.taxiList.data.Hamburg
+import gyg.demo.mytaxitest.taxiMap.TaxiMapActivity.Companion.TAXI_ID_DATA_NAME
+import gyg.demo.mytaxitest.taxiMap.data.TaxiMapState
 import javax.inject.Inject
 
 class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var binding: ActivityTaxiMapBinding
     private var viewModel: TaxiMapViewModel? = null
+    private lateinit var state: TaxiMapState
 
     @Inject
     lateinit var mapManager: MapManager
@@ -40,6 +43,17 @@ class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        val taxiId = intent.getIntExtra(TAXI_ID_DATA_NAME, 0)
+        state = if (taxiId == 0) {
+            TaxiMapState.ListState
+        } else {
+            TaxiMapState.SingleState(taxiId)
+        }
+
+        binding.mapSearchButton.setOnClickListener {
+            searchOnMapBounds()
+        }
+
         viewModel?.let { vm ->
             vm.listData.observe(this, Observer {
                 when (it) {
@@ -53,16 +67,24 @@ class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
 
                 binding.hideSearchButton = false
             })
-        }
 
-        binding.mapSearchButton.setOnClickListener {
-            searchOnMapBounds()
+            vm.singleData.observe(this, Observer {
+                when (it) {
+                    is ResultWrapper.Success -> {
+                        mapManager.loadTaxi(it.value)
+                    }
+                    is ResultWrapper.Failure -> {
+                        makeLongToast(it.error.localizedMessage)
+                    }
+                }
+                binding.hideSearchButton = false
+            })
         }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mapManager.init(googleMap, Hamburg())
-        searchOnMapBounds()
+        displayDataOnMap()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -73,6 +95,20 @@ class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun displayDataOnMap() {
+        when (state) {
+
+            is TaxiMapState.SingleState -> showSelectedTaxiOnMap((state as TaxiMapState.SingleState).id)
+            is TaxiMapState.ListState -> searchOnMapBounds()
+        }
+
+        binding.hideSearchButton = true
+    }
+
+    private fun showSelectedTaxiOnMap(taxiId: Int) {
+        viewModel?.getSelectedTaxi(taxiId)
+    }
+
     private fun searchOnMapBounds() {
         val bounds = mapManager.getMapBounds()
         viewModel?.getTaxisAtBounds(
@@ -81,12 +117,20 @@ class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
             bounds.southwest.latitude,
             bounds.southwest.longitude
         )
+    }
 
-        binding.hideSearchButton = true
+    companion object {
+        const val TAXI_ID_DATA_NAME = "taxi_id"
     }
 }
 
 fun Context.startTaxiMapActivity() {
     val intent = Intent(this, TaxiMapActivity::class.java)
+    startActivity(intent)
+}
+
+fun Context.startTaxiMapActivity(taxiId: Int) {
+    val intent = Intent(this, TaxiMapActivity::class.java)
+    intent.putExtra(TAXI_ID_DATA_NAME, taxiId)
     startActivity(intent)
 }

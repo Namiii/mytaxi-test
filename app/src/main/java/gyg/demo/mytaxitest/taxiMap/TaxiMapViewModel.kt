@@ -8,6 +8,7 @@ import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.data.TaxiRepository
 import gyg.demo.mytaxitest.data.model.*
 import gyg.demo.mytaxitest.providers.BaseScheduleProvider
+import gyg.demo.mytaxitest.taxiMap.data.NoMapDataException
 import io.reactivex.Observable
 import javax.inject.Inject
 

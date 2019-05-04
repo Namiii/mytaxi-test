@@ -20,10 +20,12 @@ class TaxiListFragment : BaseFragment() {
 
     private lateinit var binding: TaxiListFragmentBinding
 
+    var listener: TaxiListFragmentInteractionListener? = null
     var viewModel: TaxiListViewModel? = null
 
     private val adapter = TaxiListAdapter(object : OnItemClickListener<Vehicle> {
         override fun onClick(item: Vehicle) {
+            listener?.taxiSelected(item.id)
         }
     })
 
@@ -86,4 +88,8 @@ class TaxiListFragment : BaseFragment() {
         binding.taxiListSwipeLayout.isRefreshing = true
         binding.hasData = true
     }
+}
+
+interface TaxiListFragmentInteractionListener {
+    fun taxiSelected(id: Int)
 }

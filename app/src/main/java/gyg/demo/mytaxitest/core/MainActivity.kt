@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.taxiList.TaxiListFragment
+import gyg.demo.mytaxitest.taxiList.TaxiListFragmentInteractionListener
 import gyg.demo.mytaxitest.taxiMap.startTaxiMapActivity
 
 
@@ -24,6 +25,12 @@ class MainActivity : BaseActivity() {
             .beginTransaction()
             .replace(R.id.main_activity_container, taxiListFragment)
             .commit()
+
+        taxiListFragment.listener = object : TaxiListFragmentInteractionListener {
+            override fun taxiSelected(id: Int) {
+                startTaxiMapActivity(id)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
