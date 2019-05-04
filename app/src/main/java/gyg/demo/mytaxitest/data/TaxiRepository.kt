@@ -5,6 +5,7 @@ import gyg.demo.mytaxitest.data.model.Place
 import gyg.demo.mytaxitest.data.model.TaxiList
 import gyg.demo.mytaxitest.data.model.Vehicle
 import io.reactivex.Observable
+import org.jetbrains.annotations.TestOnly
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -34,6 +35,7 @@ class TaxiRepository @Inject constructor(
 
     fun hasCachedTaxiList() = taxiListCache.list.isNotEmpty()
 
+    @TestOnly
     fun getCachedTaxiList() = taxiListCache
 
     fun getSelectedTaxiFromCache(taxiId: Int): Vehicle? {
