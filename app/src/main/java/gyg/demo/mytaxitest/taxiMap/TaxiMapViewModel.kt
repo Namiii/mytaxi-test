@@ -3,8 +3,7 @@ package gyg.demo.mytaxitest.taxiMap
 import androidx.lifecycle.MutableLiveData
 import gyg.demo.mytaxitest.core.BaseViewModel
 import gyg.demo.mytaxitest.core.addTo
-import gyg.demo.mytaxitest.data.NoCacheData
-import gyg.demo.mytaxitest.data.NoDataException
+import gyg.demo.mytaxitest.data.NoCacheDataException
 import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.data.TaxiRepository
 import gyg.demo.mytaxitest.data.model.*
@@ -44,7 +43,7 @@ class TaxiMapViewModel @Inject constructor(
             .observeOn(scheduleProvider.ui())
             .subscribe({
                 if (!it.hasData()) {
-                    throw NoDataException()
+                    throw NoMapDataException()
                 }
 
                 listData.postValue(ResultWrapper.Success(it))
@@ -63,7 +62,7 @@ class TaxiMapViewModel @Inject constructor(
             .observeOn(scheduleProvider.ui())
             .subscribe({
                 if (it == null) {
-                    throw NoCacheData()
+                    throw NoCacheDataException()
                 }
 
                 singleData.postValue(ResultWrapper.Success(it))

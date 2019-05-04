@@ -12,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.core.BaseActivity
+import gyg.demo.mytaxitest.core.makeLongToast
 import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.databinding.ActivityTaxiMapBinding
 import gyg.demo.mytaxitest.taxiList.data.Hamburg
@@ -42,14 +43,15 @@ class TaxiMapActivity : BaseActivity(), OnMapReadyCallback {
         viewModel?.let { vm ->
             vm.listData.observe(this, Observer {
                 when (it) {
-
                     is ResultWrapper.Success -> {
                         mapManager.loadTaxis(it.value.list)
-                        binding.hideSearchButton = false
                     }
                     is ResultWrapper.Failure -> {
+                        makeLongToast(it.error.localizedMessage)
                     }
                 }
+
+                binding.hideSearchButton = false
             })
         }
 
