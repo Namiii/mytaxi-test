@@ -2,8 +2,8 @@ package gyg.demo.mytaxitest.data
 
 import gyg.demo.mytaxitest.OpenClassOnDebug
 import gyg.demo.mytaxitest.data.model.Place
+import gyg.demo.mytaxitest.data.model.Taxi
 import gyg.demo.mytaxitest.data.model.TaxiList
-import gyg.demo.mytaxitest.data.model.Vehicle
 import io.reactivex.Observable
 import org.jetbrains.annotations.TestOnly
 import javax.inject.Inject
@@ -38,7 +38,7 @@ class TaxiRepository @Inject constructor(
     @TestOnly
     fun getCachedTaxiList() = taxiListCache
 
-    fun getSelectedTaxiFromCache(taxiId: Int): Vehicle? {
+    fun getSelectedTaxiFromCache(taxiId: Int): Taxi? {
         if (!hasCachedTaxiList()) return null
 
         return taxiListCache.list.find {

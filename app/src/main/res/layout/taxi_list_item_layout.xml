@@ -3,15 +3,15 @@
         xmlns:tools="http://schemas.android.com/tools">
     <data>
 
-        <import type="gyg.demo.mytaxitest.data.model.Vehicle"/>
+        <import type="gyg.demo.mytaxitest.data.model.Taxi"/>
         <import type="gyg.demo.mytaxitest.taxiList.OnItemClickListener"/>
 
-        <variable name="taxi" type="Vehicle"/>
+        <variable name="taxi" type="Taxi"/>
 
 
         <variable
                 name="clickListener"
-                type="OnItemClickListener&lt;Vehicle&gt;"/>
+                type="OnItemClickListener&lt;Taxi&gt;"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

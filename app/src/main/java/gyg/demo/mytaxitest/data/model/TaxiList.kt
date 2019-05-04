@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class TaxiList(
     @SerializedName("poiList")
-    val list: List<Vehicle>
+    val list: List<Taxi>
 )
 
 fun TaxiList.hasData(): Boolean =

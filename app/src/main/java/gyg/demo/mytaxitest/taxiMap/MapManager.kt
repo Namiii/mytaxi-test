@@ -6,7 +6,7 @@ import com.google.android.gms.maps.model.*
 import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.data.model.Place
 import gyg.demo.mytaxitest.data.model.TaxiType
-import gyg.demo.mytaxitest.data.model.Vehicle
+import gyg.demo.mytaxitest.data.model.Taxi
 import gyg.demo.mytaxitest.data.model.toLatLng
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,7 +25,7 @@ class MapManager @Inject constructor() {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(placeCenter, DEFAULT_ZOOM_LEVEL))
     }
 
-    fun loadTaxis(list: List<Vehicle>) {
+    fun loadTaxis(list: List<Taxi>) {
         map.clear()
 
         for (taxi in list) {
@@ -34,7 +34,7 @@ class MapManager @Inject constructor() {
         }
     }
 
-    fun loadTaxi(taxi: Vehicle) {
+    fun loadTaxi(taxi: Taxi) {
         val marker = createTaxiMarker(taxi)
         map.addMarker(marker)
         map.moveCamera(
@@ -57,11 +57,11 @@ class MapManager @Inject constructor() {
         }
     }
 
-    private fun createTaxiMarker(vehicle: Vehicle): MarkerOptions {
+    private fun createTaxiMarker(taxi: Taxi): MarkerOptions {
         return MarkerOptions()
-            .position(vehicle.coordinate.toLatLng())
-            .icon(createTaxiMarkerIcon(vehicle.type))
-            .rotation(vehicle.headingAngle)
+            .position(taxi.coordinate.toLatLng())
+            .icon(createTaxiMarkerIcon(taxi.type))
+            .rotation(taxi.headingAngle)
     }
 
     private fun createTaxiMarkerIcon(taxiType: TaxiType): BitmapDescriptor {

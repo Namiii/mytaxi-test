@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.core.BaseFragment
 import gyg.demo.mytaxitest.data.ResultWrapper
-import gyg.demo.mytaxitest.data.model.Vehicle
+import gyg.demo.mytaxitest.data.model.Taxi
 import gyg.demo.mytaxitest.databinding.TaxiListFragmentBinding
 
 class TaxiListFragment : BaseFragment() {
@@ -23,8 +23,8 @@ class TaxiListFragment : BaseFragment() {
     var listener: TaxiListFragmentInteractionListener? = null
     var viewModel: TaxiListViewModel? = null
 
-    private val adapter = TaxiListAdapter(object : OnItemClickListener<Vehicle> {
-        override fun onClick(item: Vehicle) {
+    private val adapter = TaxiListAdapter(object : OnItemClickListener<Taxi> {
+        override fun onClick(item: Taxi) {
             listener?.taxiSelected(item.id)
         }
     })

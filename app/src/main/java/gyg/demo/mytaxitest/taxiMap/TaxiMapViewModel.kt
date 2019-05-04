@@ -18,7 +18,7 @@ class TaxiMapViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val listData = MutableLiveData<ResultWrapper<TaxiList>>()
-    val singleData = MutableLiveData<ResultWrapper<Vehicle>>()
+    val singleData = MutableLiveData<ResultWrapper<Taxi>>()
 
     fun getTaxisAtBounds(
         bound1Lat: Double,

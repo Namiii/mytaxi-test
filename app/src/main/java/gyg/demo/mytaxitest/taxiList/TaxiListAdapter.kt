@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import gyg.demo.mytaxitest.R
-import gyg.demo.mytaxitest.data.model.Vehicle
+import gyg.demo.mytaxitest.data.model.Taxi
 import gyg.demo.mytaxitest.databinding.TaxiListItemLayoutBinding
 
 class TaxiListAdapter(
-    private val clickListener: OnItemClickListener<Vehicle>
+    private val clickListener: OnItemClickListener<Taxi>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var items = listOf<Vehicle>()
+    private var items = listOf<Taxi>()
 
-    fun updateItems(items: List<Vehicle>) {
+    fun updateItems(items: List<Taxi>) {
         this.items = items
         notifyDataSetChanged()
     }
@@ -40,8 +40,8 @@ class TaxiListAdapter(
     }
 
     class TaxiViewHolder(private val binding: TaxiListItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(vehicle: Vehicle) {
-            binding.taxi = vehicle
+        fun bind(taxi: Taxi) {
+            binding.taxi = taxi
         }
     }
 }

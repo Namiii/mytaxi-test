@@ -27,7 +27,7 @@ class TaxiListViewModelTest {
 
     private val taxiList = TaxiList(
         (1..30).map {
-            Vehicle(
+            Taxi(
                 it,
                 Coordinate(
                     53.407547,

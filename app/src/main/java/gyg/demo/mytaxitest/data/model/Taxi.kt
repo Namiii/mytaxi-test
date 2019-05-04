@@ -2,7 +2,7 @@ package gyg.demo.mytaxitest.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Vehicle(
+data class Taxi(
     @SerializedName("id")
     val id: Int,
     @SerializedName("coordinate")

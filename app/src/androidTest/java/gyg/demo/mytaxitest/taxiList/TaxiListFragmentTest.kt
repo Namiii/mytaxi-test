@@ -40,7 +40,7 @@ class TaxiListFragmentTest {
     private val data = MutableLiveData<ResultWrapper<TaxiList>>()
     private val taxiList = TaxiList(
         (1..NO_OF_TAXIS).map {
-            Vehicle(
+            Taxi(
                 it,
                 Coordinate(
                     53.407547,
