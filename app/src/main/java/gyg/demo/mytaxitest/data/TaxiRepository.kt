@@ -16,7 +16,7 @@ class TaxiRepository @Inject constructor(
 
     private var taxiListCache = TaxiList(ArrayList())
 
-    fun getTaxis(place: Place): Observable<TaxiList> {
+    fun getTaxis(place: Place, cacheResults: Boolean = true): Observable<TaxiList> {
         place.apply {
             return taxiListService.getTaxis(
                 bound1.lat,
@@ -25,7 +25,9 @@ class TaxiRepository @Inject constructor(
                 bound2.long
             )
                 .doOnNext {
-                    reloadCache(it)
+                    if (cacheResults) {
+                        reloadCache(it)
+                    }
                 }
         }
     }

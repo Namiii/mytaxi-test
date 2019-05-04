@@ -30,8 +30,8 @@ class TaxiListViewModelTest {
             Vehicle(
                 it,
                 Coordinate(
-                    53.407547f,
-                    9.8783910f
+                    53.407547,
+                    9.8783910
                 ),
                 TaxiType.NormalTaxi,
                 310.30877f
@@ -49,7 +49,7 @@ class TaxiListViewModelTest {
 
     @Test
     fun getInitTaxisReturnsData() {
-        `when`(repository.getTaxis(any())).thenReturn(Observable.just(taxiList))
+        `when`(repository.getTaxis(any(), eq(true))).thenReturn(Observable.just(taxiList))
 
         viewModel.getInitTaxis()
 
@@ -59,23 +59,23 @@ class TaxiListViewModelTest {
             assertEquals(taxiList.list.size, (value as ResultWrapper.Success).value.list.size)
         }
 
-        verify(repository, times(1)).getTaxis(any())
+        verify(repository, times(1)).getTaxis(any(), eq(true))
     }
 
     @Test
     fun getPlaceTaxisReturnsData() {
         val place = Place(
             Coordinate(
-                53.40754f,
-                9.87839f
+                53.40754,
+                9.87839
             ),
             Coordinate(
-                53.61177f,
-                9.99464f
+                53.61177,
+                9.99464
             )
         )
 
-        `when`(repository.getTaxis(any())).thenReturn(Observable.just(taxiList))
+        `when`(repository.getTaxis(any(), eq(true))).thenReturn(Observable.just(taxiList))
 
         viewModel.getTaxisAtPlace(
             place.bound1.lat,
@@ -90,12 +90,12 @@ class TaxiListViewModelTest {
             assertEquals(taxiList.list.size, (value as ResultWrapper.Success).value.list.size)
         }
 
-        verify(repository, times(1)).getTaxis(any())
+        verify(repository, times(1)).getTaxis(any(), eq(true))
     }
 
     @Test
     fun checkGetTaxisReturnsNoData() {
-        `when`(repository.getTaxis(any())).thenReturn(Observable.just(taxiList.copy(emptyList())))
+        `when`(repository.getTaxis(any(), eq(true))).thenReturn(Observable.just(taxiList.copy(emptyList())))
 
         viewModel.getInitTaxis()
 
@@ -107,13 +107,13 @@ class TaxiListViewModelTest {
 
         }
 
-        verify(repository, times(1)).getTaxis(any())
+        verify(repository, times(1)).getTaxis(any(), eq(true))
     }
 
 
     @Test
     fun checkGetTaxisReturnsApiError() {
-        `when`(repository.getTaxis(any())).thenReturn(Observable.error(TimeoutException()))
+        `when`(repository.getTaxis(any(), eq(true))).thenReturn(Observable.error(TimeoutException()))
 
         viewModel.getInitTaxis()
 
@@ -125,6 +125,6 @@ class TaxiListViewModelTest {
 
         }
 
-        verify(repository, times(1)).getTaxis(any())
+        verify(repository, times(1)).getTaxis(any(), eq(true))
     }
 }

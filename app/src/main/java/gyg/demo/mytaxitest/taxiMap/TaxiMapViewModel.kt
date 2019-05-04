@@ -38,7 +38,7 @@ class TaxiMapViewModel @Inject constructor(
             )
         )
             .flatMap {
-                repository.getTaxis(it)
+                repository.getTaxis(it, false)
             }
             .subscribeOn(scheduleProvider.io())
             .observeOn(scheduleProvider.ui())
