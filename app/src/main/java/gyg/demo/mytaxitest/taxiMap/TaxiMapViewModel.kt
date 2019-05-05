@@ -3,7 +3,7 @@ package gyg.demo.mytaxitest.taxiMap
 import androidx.lifecycle.MutableLiveData
 import gyg.demo.mytaxitest.core.BaseViewModel
 import gyg.demo.mytaxitest.core.addTo
-import gyg.demo.mytaxitest.data.NoCacheDataException
+import gyg.demo.mytaxitest.taxiMap.data.NoCacheDataException
 import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.data.TaxiRepository
 import gyg.demo.mytaxitest.data.model.*

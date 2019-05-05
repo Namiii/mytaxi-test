@@ -1,4 +1,4 @@
-package gyg.demo.mytaxitest.data
+package gyg.demo.mytaxitest.taxiMap.data
 
 class NoCacheDataException : Throwable() {
     override val message: String?

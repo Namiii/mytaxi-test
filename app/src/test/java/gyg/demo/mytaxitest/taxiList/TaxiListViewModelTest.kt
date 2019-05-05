@@ -2,7 +2,7 @@ package gyg.demo.mytaxitest.taxiList
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import gyg.demo.mytaxitest.any
-import gyg.demo.mytaxitest.data.NoDataException
+import gyg.demo.mytaxitest.taxiList.data.NoDataException
 import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.data.TaxiRepository
 import gyg.demo.mytaxitest.data.model.*

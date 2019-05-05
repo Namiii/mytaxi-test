@@ -11,7 +11,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import gyg.demo.mytaxitest.R
 import gyg.demo.mytaxitest.TestSingleFragmentActivity
-import gyg.demo.mytaxitest.data.NoDataException
+import gyg.demo.mytaxitest.taxiList.data.NoDataException
 import gyg.demo.mytaxitest.data.ResultWrapper
 import gyg.demo.mytaxitest.data.model.*
 import gyg.demo.mytaxitest.util.RecyclerViewItemCountAssertion

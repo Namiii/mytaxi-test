@@ -19,6 +19,8 @@ class MapManager @Inject constructor() {
     //Init has to be called before interacting with the class
     fun init(map: GoogleMap, defaultPlace: Place) {
         this.map = map
+
+        //To clear the default marker
         map.clear()
 
         val placeCenter = getPlaceCenter(defaultPlace)

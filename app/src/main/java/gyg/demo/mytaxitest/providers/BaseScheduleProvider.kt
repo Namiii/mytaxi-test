@@ -13,5 +13,4 @@ interface BaseScheduleProvider {
 
     @NotNull
     fun ui(): Scheduler
-
 }

@@ -42,7 +42,6 @@ class MainActivity : BaseActivity() {
         if (item?.itemId == R.id.map_option) {
             startTaxiMapActivity()
         }
-
         return super.onOptionsItemSelected(item)
     }
 }
